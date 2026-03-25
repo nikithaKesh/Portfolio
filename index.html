@@ -3,796 +3,580 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikitha Keshan | Software Developer & Automation Creator</title>
+    <title>Nikitha Keshan | Systems & Software Architect</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@200;400;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        /* =========================================================
-           CSS VARIABLES & DESIGN SYSTEM (2026 Premium Dark Theme)
-           ========================================================= */
         :root {
-            --bg-base: #0a0a0b; /* Deep Obsidian */
-            --bg-surface: #141415; /* Charcoal */
-            --text-main: #f4f4f0; /* Warm Ivory */
-            --text-muted: #9e9e9a; /* Sand/Gray */
-            --accent-main: #c87941; /* Muted Copper */
-            --accent-glow: rgba(200, 121, 65, 0.3);
-            --accent-sage: #8f9779; /* Subtle Sage */
-            
-            --glass-bg: rgba(255, 255, 255, 0.03);
+            /* 2026 Premium Palette */
+            --obsidian: #0d0d0d;
+            --charcoal: #1a1a1a;
+            --ivory: #f5f5f0;
+            --amber: #d4a373; /* Muted Copper/Amber */
+            --amber-glow: rgba(212, 163, 115, 0.3);
+            --sage: #4a5d4e;
+            --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-hover: rgba(255, 255, 255, 0.06);
-            
-            --font-display: 'Outfit', sans-serif;
-            --font-body: 'Plus Jakarta Sans', sans-serif;
-            
-            --transition-smooth: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-            --transition-fast: 0.3s ease;
+            --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        /* =========================================================
-           GLOBAL RESET & BASE
-           ========================================================= */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none; /* Custom cursor fallback */
-        }
-
-        html {
-            scroll-behavior: smooth;
+            cursor: none; /* Custom cursor implementation */
         }
 
         body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            font-family: var(--font-body);
+            background-color: var(--obsidian);
+            color: var(--ivory);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(200, 121, 65, 0.05), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(143, 151, 121, 0.05), transparent 25%);
-            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4 {
-            font-family: var(--font-display);
-            font-weight: 500;
-            line-height: 1.2;
+        h1, h2, h3, .display-font {
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
 
-        a {
-            color: var(--text-main);
-            text-decoration: none;
-            transition: color var(--transition-fast);
-        }
-
-        ul { list-style: none; }
-        
-        /* Typography Scale */
-        .text-hero { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; letter-spacing: -0.02em; }
-        .text-h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem; }
-        .text-h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-main); }
-        .text-lead { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; }
-
-        /* =========================================================
-           CUSTOM CURSOR
-           ========================================================= */
-        #cursor, #cursor-blur {
+        /* --- Custom Cursor --- */
+        #cursor {
+            width: 8px;
+            height: 8px;
+            background: var(--amber);
+            border-radius: 50%;
             position: fixed;
-            top: 0; left: 0;
             pointer-events: none;
             z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+        #cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--amber-glow);
             border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
-        }
-        #cursor {
-            width: 10px; height: 10px;
-            background-color: var(--accent-main);
-        }
-        #cursor-blur {
-            width: 40px; height: 40px;
-            background-color: transparent;
-            border: 1px solid var(--accent-main);
-            transition: all 0.15s ease-out;
-        }
-        .hover-active #cursor { background-color: transparent; }
-        .hover-active #cursor-blur {
-            width: 60px; height: 60px;
-            background-color: var(--accent-glow);
-            backdrop-filter: blur(2px);
-            border-color: transparent;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.15s ease, background 0.3s ease;
         }
 
-        /* =========================================================
-           LOADING ANIMATION
-           ========================================================= */
-        #loader {
-            position: fixed; inset: 0;
-            background: var(--bg-base);
-            z-index: 10000;
-            display: flex; justify-content: center; align-items: center;
-            transition: opacity 0.8s ease;
-        }
-        .loader-text {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            color: var(--text-muted);
-            letter-spacing: 0.2em;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; color: var(--accent-main); } }
-
-        /* =========================================================
-           UTILITIES & GLASSMORPHISM
-           ========================================================= */
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: transform var(--transition-smooth), background var(--transition-fast);
-        }
-        .glass-panel:hover {
-            background: var(--glass-hover);
-            transform: translateY(-5px);
-            border-color: rgba(200, 121, 65, 0.2);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            font-family: var(--font-display);
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid transparent;
-            transition: all var(--transition-fast);
-        }
-        .btn-primary {
-            background: var(--accent-main);
-            color: var(--bg-base);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--accent-main);
-            border-color: var(--accent-main);
-            box-shadow: none;
-        }
-        .btn-secondary {
-            background: transparent;
-            border-color: var(--glass-border);
-            color: var(--text-main);
-        }
-        .btn-secondary:hover {
-            border-color: var(--accent-main);
-            color: var(--accent-main);
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* =========================================================
-           NAVIGATION
-           ========================================================= */
-        header {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 1.5rem 0;
-            transition: all 0.4s ease;
-        }
-        header.scrolled {
-            background: rgba(10, 10, 11, 0.8);
+        /* --- Layout & Nav --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(13, 13, 13, 0.7);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
-            padding: 1rem 0;
         }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
-        .logo span { color: var(--accent-main); }
-        
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-link {
-            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;
-            color: var(--text-muted); position: relative;
-        }
-        .nav-link::after {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px;
-            background: var(--accent-main); transition: width var(--transition-fast);
-        }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .nav-link:hover, .nav-link.active { color: var(--text-main); }
 
-        /* =========================================================
-           SPA PAGE ROUTING STRUCTURE
-           ========================================================= */
-        .page-section {
-            display: none; /* Hidden by default */
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--amber);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--ivory);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            opacity: 1;
+            color: var(--amber);
+        }
+
+        /* --- Page Container --- */
+        .page-content {
             min-height: 100vh;
-            padding-top: 120px;
-            padding-bottom: 80px;
-            animation: fadeInPage 0.8s forwards;
+            padding-top: 100px;
+            display: none; /* Hidden by default for SPA logic */
         }
-        .page-section.is-active { display: block; }
-        @keyframes fadeInPage { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* =========================================================
-           HOME PAGE SPECIFICS
-           ========================================================= */
-        .hero-section { min-height: 90vh; display: flex; align-items: center; }
-        .hero-image-wrapper { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/5; }
-        .hero-image-wrapper img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(50%) contrast(1.2); transition: transform var(--transition-smooth); }
-        .hero-image-wrapper:hover img { transform: scale(1.05); filter: grayscale(0%); }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-base), transparent); }
-        
-        .cta-group { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
-        
-        .metrics-bar {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
-            margin-top: 6rem; padding-top: 3rem; border-top: 1px solid var(--glass-border);
+        .page-active {
+            display: block;
+            animation: fadeIn 0.8s ease forwards;
         }
-        .metric-item h4 { font-size: 3rem; color: var(--accent-main); margin-bottom: 0.5rem; }
-        .metric-item p { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
 
-        .logo-strip {
-            display: flex; justify-content: space-around; align-items: center; opacity: 0.5;
-            margin-top: 4rem; filter: grayscale(100%); transition: all var(--transition-fast);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .logo-strip:hover { opacity: 1; filter: grayscale(0%); }
-        .logo-strip img { height: 40px; }
 
-        /* =========================================================
-           ABOUT PAGE
-           ========================================================= */
-        .timeline { border-left: 2px solid var(--glass-border); padding-left: 2rem; margin-top: 2rem; }
-        .timeline-item { position: relative; margin-bottom: 3rem; }
-        .timeline-item::before {
-            content: ''; position: absolute; left: -35px; top: 5px; width: 16px; height: 16px;
-            border-radius: 50%; background: var(--accent-main); border: 4px solid var(--bg-base);
+        section {
+            padding: 80px 10%;
         }
-        .timeline-date { color: var(--accent-sage); font-size: 0.9rem; margin-bottom: 0.5rem; }
 
-        /* =========================================================
-           SKILLS & PROJECTS
-           ========================================================= */
-        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
-        .skill-tag { background: rgba(255,255,255,0.05); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--glass-border); }
-        
-        .project-filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
-        .filter-btn { background: transparent; border: none; color: var(--text-muted); font-family: var(--font-body); padding: 0.5rem 1rem; border-radius: 20px; transition: all 0.3s; }
-        .filter-btn.active, .filter-btn:hover { background: var(--glass-border); color: var(--text-main); }
-
-        .project-card { display: flex; flex-direction: column; overflow: hidden; padding: 0; }
-        .project-img { height: 250px; overflow: hidden; position: relative; }
-        .project-img img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-smooth); }
-        .project-card:hover .project-img img { transform: scale(1.1); }
-        .project-content { padding: 2rem; }
-        .project-category { color: var(--accent-sage); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.5rem; }
-        .project-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
-        .project-links a { font-size: 0.9rem; text-decoration: underline; text-decoration-color: transparent; }
-        .project-links a:hover { text-decoration-color: var(--accent-main); color: var(--accent-main); }
-
-        /* =========================================================
-           CONTACT PAGE & FOOTER
-           ========================================================= */
-        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
-        .input-group input, .input-group textarea {
-            width: 100%; background: var(--glass-bg); border: 1px solid var(--glass-border);
-            padding: 1rem; border-radius: 8px; color: var(--text-main); font-family: var(--font-body);
-            transition: border-color var(--transition-fast);
+        /* --- Hero Section --- */
+        .hero {
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
         }
-        .input-group input:focus, .input-group textarea:focus { outline: none; border-color: var(--accent-main); background: rgba(255,255,255,0.08); }
-        
-        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .social-link { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid var(--glass-border); border-radius: 8px; transition: all 0.3s; }
-        .social-link:hover { border-color: var(--accent-main); background: var(--glass-bg); transform: translateX(5px); }
 
-        footer { text-align: center; padding: 3rem 0; border-top: 1px solid var(--glass-border); margin-top: 4rem; color: var(--text-muted); font-size: 0.9rem; }
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+        }
 
-        /* =========================================================
-           RESPONSIVE DESIGN
-           ========================================================= */
-        @media (max-width: 900px) {
-            .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
-            .metrics-bar { grid-template-columns: 1fr 1fr; }
-            .nav-links { display: none; /* Mobile menu would go here */ }
-            .text-hero { font-size: 2.5rem; }
-            .hero-section { text-align: center; margin-top: 2rem; }
-            .cta-group { justify-content: center; }
-            .hero-image-wrapper { max-width: 400px; margin: 0 auto; }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            color: #aaa;
+            margin-bottom: 2.5rem;
+        }
+
+        .accent-text {
+            color: var(--amber);
+        }
+
+        /* --- UI Components --- */
+        .btn {
+            padding: 1rem 2rem;
+            border: 1px solid var(--amber);
+            background: transparent;
+            color: var(--ivory);
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            margin-right: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--amber);
+            color: var(--obsidian);
+            box-shadow: 0 0 30px var(--amber-glow);
+        }
+
+        .btn-secondary {
+            border-color: var(--glass-border);
+            background: var(--glass);
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--amber);
+            transform: translateY(-10px);
+        }
+
+        /* --- Grid Layouts --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* --- Project Gallery --- */
+        .filter-tabs {
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            color: var(--ivory);
+            opacity: 0.5;
+            cursor: pointer;
+            font-weight: 600;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .filter-btn.active {
+            opacity: 1;
+            border-color: var(--amber);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 250px;
+            background: #222;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%) contrast(1.2);
+            transition: var(--transition);
+        }
+
+        .glass-card:hover .project-img img {
+            filter: grayscale(0%);
+            scale: 1.1;
+        }
+
+        /* --- Stats --- */
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 2rem;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--amber);
+        }
+
+        /* --- Contact Form --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        input:focus { border-color: var(--amber); outline: none; }
+
+        /* --- Scroll Progress --- */
+        #progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--amber);
+            z-index: 1001;
+            width: 0%;
+        }
+
+        footer {
+            padding: 4rem 10%;
+            background: #080808;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .contact-container { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
 
-    <div id="loader">
-        <div class="loader-text">NIKITHA KESHAN</div>
-    </div>
-
-    <div id="cursor-blur"></div>
+    <div id="progress"></div>
     <div id="cursor"></div>
+    <div id="cursor-follower"></div>
 
-    <header id="header">
-        <div class="container">
-            <nav>
-                <a href="#home" class="logo hover-target">Nikitha<span>.</span></a>
-                <ul class="nav-links">
-                    <li><a href="#home" class="nav-link active hover-target">Home</a></li>
-                    <li><a href="#about" class="nav-link hover-target">About</a></li>
-                    <li><a href="#skills" class="nav-link hover-target">Skills</a></li>
-                    <li><a href="#projects" class="nav-link hover-target">Projects</a></li>
-                    <li><a href="#experience" class="nav-link hover-target">Experience</a></li>
-                    <li><a href="#services" class="nav-link hover-target">Services</a></li>
-                    <li><a href="#contact" class="nav-link hover-target">Contact</a></li>
-                </ul>
-            </nav>
+    <nav>
+        <a href="#home" class="logo">N.KESHAN</a>
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
         </div>
-    </header>
+        <a href="#" class="btn" style="padding: 0.5rem 1rem; font-size: 0.7rem;">Download CV</a>
+    </nav>
 
-    <main id="app">
+    <main id="home" class="page-content page-active">
+        <section class="hero">
+            <p style="letter-spacing: 5px; text-transform: uppercase; margin-bottom: 0;">2026 Portfolio</p>
+            <h1>Building <span class="accent-text">Digital Systems</span> That Solve Real Problems.</h1>
+            <p>I am Nikitha Keshan—an undergraduate developer and IT administrator bridging the gap between clean code and business efficiency.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Let's Talk</a>
+            </div>
 
-        <section id="home" class="page-section is-active">
-            <div class="container">
-                <div class="grid-2 hero-section">
-                    <div class="hero-content reveal">
-                        <h3 class="text-h3">Software Developer & Automation Creator</h3>
-                        <h1 class="text-hero">Building websites, automations, and systems that solve <span style="color: var(--accent-main);">real problems.</span></h1>
-                        <p class="text-lead" style="margin-top: 1.5rem;">I am a practical builder combining clean code with business logic to create digital systems, web apps, and workflows that actually work.</p>
-                        
-                        <div class="cta-group">
-                            <a href="#projects" class="btn btn-primary hover-target">View Projects</a>
-                            <a href="#contact" class="btn btn-secondary hover-target">Contact Me</a>
-                            <a href="#" class="btn btn-secondary hover-target">Download CV</a>
-                        </div>
-                    </div>
-                    
-                    <div class="hero-image reveal" style="transition-delay: 0.2s;">
-                        <div class="hero-image-wrapper">
-                            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nikitha Workspace">
-                            <div class="hero-overlay"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="metrics-bar reveal">
-                    <div class="metric-item">
-                        <h4 class="counter" data-target="15">0</h4>
-                        <p>Website Projects</p>
-                    </div>
-                    <div class="metric-item">
-                        <h4 class="counter" data-target="20">0</h4>
-                        <p>Systems Automated</p>
-                    </div>
-                    <div class="metric-item">
-                        <h4 class="counter" data-target="12">0</h4>
-                        <p>Tech Stack Tools</p>
-                    </div>
-                    <div class="metric-item">
-                        <h4 class="counter" data-target="3">0</h4>
-                        <p>Years Experience</p>
-                    </div>
-                </div>
-
-                <div class="logo-strip reveal">
-                    <h4 style="color: var(--text-muted); font-family: var(--font-body); font-weight: 400;">Trusted by:</h4>
-                    <span style="font-weight: bold; font-size: 1.2rem;">BISEKA</span>
-                    <span style="font-style: italic; font-size: 1.2rem;">Love&Lab</span>
-                    <span style="letter-spacing: 2px; font-size: 1.2rem;">OLA TANGALLE</span>
-                    <span style="font-family: monospace; font-size: 1.2rem;">CODENEST</span>
-                    <span style="font-weight: 900; font-size: 1.2rem;">MOB SURFSKATE</span>
-                </div>
+            <div class="stats-bar">
+                <div class="stat-item"><h3>10+</h3><p>Projects Delivered</p></div>
+                <div class="stat-item"><h3>05+</h3><p>Systems Automated</p></div>
+                <div class="stat-item"><h3>04+</h3><p>Programming Languages</p></div>
             </div>
         </section>
 
-        <section id="about" class="page-section">
-            <div class="container">
-                <h2 class="text-h2 reveal">About Me</h2>
-                
-                <div class="grid-2">
-                    <div class="reveal">
-                        <p class="text-lead">I am an undergraduate student and a practical IT professional. My mission is simple: I build digital tools that make businesses run smoother and look better.</p>
-                        <p style="color: var(--text-muted); margin-bottom: 2rem;">Whether it's developing a sleek corporate website, automating an entire invoicing workflow using Google Apps Script, or acting as a system administrator, I bridge the gap between technical code and real-world business needs. My mindset is solution-oriented and detail-focused.</p>
-                        
-                        <h3 class="text-h3" style="margin-top: 3rem;">Education Journey</h3>
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-date">2024 - 2028</div>
-                                <h4>Bachelor in Information Technology</h4>
-                                <p style="color: var(--text-muted);">Focusing on software engineering, system architecture, and modern development practices.</p>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-date">2025 - 2027</div>
-                                <h4>HND at Londontech City Campus</h4>
-                                <p style="color: var(--text-muted);">Higher National Diploma specializing in practical computing and enterprise systems.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="reveal" style="transition-delay: 0.2s;">
-                        <div class="grid-2" style="gap: 1.5rem;">
-                            <div class="glass-panel">
-                                <h4 style="margin-bottom: 1rem; color: var(--accent-main);">Problem Solving</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-muted);">I don't just write code; I analyze business bottlenecks and build targeted solutions.</p>
-                            </div>
-                            <div class="glass-panel">
-                                <h4 style="margin-bottom: 1rem; color: var(--accent-main);">Automation</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-muted);">Eliminating repetitive tasks using Python, VBA, and Google Apps Script.</p>
-                            </div>
-                            <div class="glass-panel">
-                                <h4 style="margin-bottom: 1rem; color: var(--accent-main);">Clean Dev</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-muted);">Writing scalable, readable, and highly optimized code for the web.</p>
-                            </div>
-                            <div class="glass-panel">
-                                <h4 style="margin-bottom: 1rem; color: var(--accent-main);">Business Focus</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-muted);">Ensuring every project delivers measurable ROI and efficiency.</p>
-                            </div>
-                        </div>
+        <section>
+            <h2 style="margin-bottom: 3rem;">Trusted By</h2>
+            <div class="grid-3" style="opacity: 0.5; filter: grayscale(1);">
+                <center>BISEKA COSMETICS</center>
+                <center>CODENEST</center>
+                <center>LOVEANDLAB</center>
+                <center>OLA TANGALLE</center>
+            </div>
+        </section>
+    </main>
+
+    <main id="about" class="page-content">
+        <section>
+            <h2 class="accent-text">The Story</h2>
+            <div class="contact-container" style="align-items: center;">
+                <div class="glass-card" style="height: 400px; display: flex; align-items: center; justify-content: center;">
+                    [Portrait Placeholder: Nikitha Keshan]
+                </div>
+                <div>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                        I don't just write code; I build solutions. As an IT Administrator and Developer, I specialize in looking at a business mess and turning it into a streamlined digital engine.
+                    </p>
+                    <div class="glass-card">
+                        <h3>My Philosophy</h3>
+                        <p>Simplicity is the ultimate sophistication. Whether it's a website for a luxury hotel or an internal automation for a cosmetics giant, my goal is always clarity, speed, and impact.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="page-section">
-            <div class="container">
-                <h2 class="text-h2 reveal" style="text-align: center;">Technical Arsenal</h2>
-                <p class="text-lead reveal" style="text-align: center; margin: 0 auto 4rem auto;">Tools, languages, and systems I use to build and automate.</p>
-                
-                <div class="grid-3">
-                    <div class="glass-panel reveal">
-                        <h3 class="text-h3">Programming</h3>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Core logic and backend development.</p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python (Automation/Backend)</span>
-                            <span class="skill-tag">Java (Systems)</span>
-                            <span class="skill-tag">C# (Enterprise)</span>
-                            <span class="skill-tag">C++ (Core logic)</span>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-panel reveal" style="transition-delay: 0.1s;">
-                        <h3 class="text-h3">Web Development</h3>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Frontend interfaces and web logic.</p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">HTML5 (Semantic)</span>
-                            <span class="skill-tag">CSS3 (Modern UI)</span>
-                            <span class="skill-tag">JavaScript (Dynamic FX)</span>
-                            <span class="skill-tag">CMS Platforms</span>
-                        </div>
-                    </div>
-
-                    <div class="glass-panel reveal" style="transition-delay: 0.2s;">
-                        <h3 class="text-h3">Data & Automation</h3>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Databases and workflow scripting.</p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">SQL / MySQL</span>
-                            <span class="skill-tag">Google Apps Script</span>
-                            <span class="skill-tag">Excel VBA & Macros</span>
-                            <span class="skill-tag">Google Sheets API</span>
-                        </div>
-                    </div>
+        <section>
+            <h2>Education</h2>
+            <div class="grid-3">
+                <div class="glass-card">
+                    <p class="accent-text">2024 - 2028</p>
+                    <h3>Bachelors in IT</h3>
+                    <p>University Undergraduate Program</p>
+                </div>
+                <div class="glass-card">
+                    <p class="accent-text">2025 - 2027</p>
+                    <h3>HND Londontech</h3>
+                    <p>City Campus Excellence</p>
                 </div>
             </div>
         </section>
+    </main>
 
-        <section id="projects" class="page-section">
-            <div class="container">
-                <h2 class="text-h2 reveal">Selected Work</h2>
-                
-                <div class="project-filters reveal">
-                    <button class="filter-btn active">All</button>
-                    <button class="filter-btn">Websites</button>
-                    <button class="filter-btn">Automations</button>
-                    <button class="filter-btn">Business Tools</button>
+    <main id="skills" class="page-content">
+        <section>
+            <h2 style="margin-bottom: 3rem;">Technical <span class="accent-text">Arsenal</span></h2>
+            <div class="grid-3">
+                <div class="glass-card">
+                    <h3>Development</h3>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>Python / Java / C#</li>
+                        <li>HTML5 / CSS3 / JS</li>
+                        <li>SQL / MySQL</li>
+                    </ul>
                 </div>
-
-                <div class="grid-3">
-                    <div class="glass-panel project-card reveal">
-                        <div class="project-img">
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="LoveandLab Website">
-                        </div>
-                        <div class="project-content">
-                            <div class="project-category">Website Development</div>
-                            <h3 style="margin-bottom: 0.5rem;">LoveandLab Platform</h3>
-                            <p style="font-size: 0.9rem; color: var(--text-muted);">A comprehensive website build focusing on clean user experience and brand identity.</p>
-                            <div class="skill-tags" style="margin-top: 1rem;">
-                                <span class="skill-tag">HTML/CSS/JS</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="hover-target">View Case Study →</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="glass-panel project-card reveal" style="transition-delay: 0.1s;">
-                        <div class="project-img">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Automation Tool">
-                        </div>
-                        <div class="project-content">
-                            <div class="project-category">Automation System</div>
-                            <h3 style="margin-bottom: 0.5rem;">Automated Invoice Generator</h3>
-                            <p style="font-size: 0.9rem; color: var(--text-muted);">A custom system that automatically generates and emails invoices based on database triggers.</p>
-                            <div class="skill-tags" style="margin-top: 1rem;">
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">SQL</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="hover-target">View Details →</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="glass-panel project-card reveal" style="transition-delay: 0.2s;">
-                        <div class="project-img">
-                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Biseka Website">
-                        </div>
-                        <div class="project-content">
-                            <div class="project-category">Business Tools / Web</div>
-                            <h3 style="margin-bottom: 0.5rem;">Biseka Cosmetics Web</h3>
-                            <p style="font-size: 0.9rem; color: var(--text-muted);">Official website and internal dashboard management for Biseka Cosmetics.</p>
-                            <div class="skill-tags" style="margin-top: 1rem;">
-                                <span class="skill-tag">Web Stack</span>
-                                <span class="skill-tag">Admin Tools</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="hover-target">Live Site →</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="glass-card">
+                    <h3>Automation</h3>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>Google Apps Script</li>
+                        <li>Excel VBA & Macros</li>
+                        <li>System Workflows</li>
+                    </ul>
                 </div>
-                
-                <div style="text-align: center; margin-top: 3rem;">
-                    <a href="#" class="btn btn-secondary hover-target">Load More Projects</a>
+                <div class="glass-card">
+                    <h3>Business Tools</h3>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>Content Management</li>
+                        <li>Invoice Generators</li>
+                        <li>Email Systems</li>
+                    </ul>
                 </div>
             </div>
         </section>
+    </main>
 
-        <section id="experience" class="page-section">
-            <div class="container">
-                <h2 class="text-h2 reveal">Work Experience</h2>
-                <div class="grid-2">
-                    <div class="reveal">
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-date">2024 - 2026</div>
-                                <h4>IT Administrator</h4>
-                                <h5 style="color: var(--accent-main); margin-bottom: 1rem;">Biseka Cosmetics</h5>
-                                <p style="color: var(--text-muted); font-size: 0.95rem;">Managed internal IT infrastructure, developed web assets, and streamlined daily operations through automated workflows. Handled databases and internal business tools.</p>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-date">Project Collaboration</div>
-                                <h4>Web Developer / Partner</h4>
-                                <h5 style="color: var(--accent-main); margin-bottom: 1rem;">Codenest</h5>
-                                <p style="color: var(--text-muted); font-size: 0.95rem;">Worked alongside Codenest on multiple high-end website projects, delivering clean, responsive, and performance-optimized frontends.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="reveal glass-panel" style="background: rgba(200, 121, 65, 0.05); border-color: var(--accent-main);">
-                        <h3 class="text-h3">Impact & Execution</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 1rem;">Beyond job titles, my real-world execution involves looking at a company's manual processes and turning them into scalable systems. I don't just maintain networks; I actively build software that reduces human error and saves time.</p>
-                        <ul style="color: var(--text-main); font-size: 0.9rem; margin-left: 1.5rem; list-style-type: circle;">
-                            <li style="margin-bottom: 0.5rem;">Optimized business workflows via Google Sheets & Apps Script.</li>
-                            <li style="margin-bottom: 0.5rem;">Deployed automated email systems for client communications.</li>
-                            <li style="margin-bottom: 0.5rem;">Delivered fast, SEO-friendly websites for hotels and surf brands.</li>
-                        </ul>
-                    </div>
+    <main id="projects" class="page-content">
+        <section>
+            <div class="filter-tabs">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Websites</button>
+                <button class="filter-btn">Automation</button>
+            </div>
+
+            <div class="grid-3">
+                <div class="glass-card">
+                    <div class="project-img">[Image: LoveAndLab Website]</div>
+                    <h3>LoveAndLab</h3>
+                    <p>Premium Web Presence</p>
+                    <a href="#" class="accent-text" style="text-decoration: none; font-size: 0.8rem; font-weight: bold; margin-top: 10px; display: block;">VIEW CASE STUDY →</a>
+                </div>
+                <div class="glass-card">
+                    <div class="project-img">[Image: Automation System]</div>
+                    <h3>Biseka Automation</h3>
+                    <p>Internal Workflow Engine</p>
+                    <a href="#" class="accent-text" style="text-decoration: none; font-size: 0.8rem; font-weight: bold; margin-top: 10px; display: block;">VIEW CASE STUDY →</a>
+                </div>
+                <div class="glass-card">
+                    <div class="project-img">[Image: OLA Tangalle]</div>
+                    <h3>OLA Tangalle</h3>
+                    <p>Hotel Booking System</p>
+                    <a href="#" class="accent-text" style="text-decoration: none; font-size: 0.8rem; font-weight: bold; margin-top: 10px; display: block;">VIEW CASE STUDY →</a>
                 </div>
             </div>
         </section>
+    </main>
 
-        <section id="services" class="page-section">
-            <div class="container">
-                <h2 class="text-h2 reveal" style="text-align: center;">What I Can Do For You</h2>
-                <div class="grid-3" style="margin-top: 3rem;">
-                    <div class="glass-panel reveal">
-                        <h3 style="margin-bottom: 1rem;">Web Development</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Portfolio websites, business landing pages, and frontend redesigns built from scratch using clean code.</p>
-                    </div>
-                    <div class="glass-panel reveal" style="transition-delay: 0.1s;">
-                        <h3 style="margin-bottom: 1rem;">System Automation</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Automating repetitive tasks, custom invoice generators, and scheduled email sending systems.</p>
-                    </div>
-                    <div class="glass-panel reveal" style="transition-delay: 0.2s;">
-                        <h3 style="margin-bottom: 1rem;">Business Tools</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Google Sheets/Apps Script solutions, VBA macros, and internal workflow management dashboards.</p>
-                    </div>
+    <main id="experience" class="page-content">
+        <section>
+            <h2 class="accent-text" style="margin-bottom: 3rem;">The Journey</h2>
+            <div style="border-left: 1px solid var(--amber); padding-left: 2rem;">
+                <div style="margin-bottom: 4rem; position: relative;">
+                    <span style="position: absolute; left: -2.4rem; top: 0; width: 12px; height: 12px; background: var(--amber); border-radius: 50%;"></span>
+                    <h3>IT Administrator @ Biseka Cosmetics</h3>
+                    <p class="accent-text">2024 - 2026</p>
+                    <p>Managing core IT infrastructure, automating internal reporting, and developing custom business tools to optimize retail operations.</p>
+                </div>
+                <div style="margin-bottom: 4rem; position: relative;">
+                    <span style="position: absolute; left: -2.4rem; top: 0; width: 12px; height: 12px; background: var(--amber); border-radius: 50%;"></span>
+                    <h3>Web Developer @ Codenest</h3>
+                    <p class="accent-text">Collaborative Projects</p>
+                    <p>Development of high-performance websites for diverse clients including OLA Tangalle and MOB Surfskate.</p>
                 </div>
             </div>
         </section>
+    </main>
 
-        <section id="contact" class="page-section">
-            <div class="container">
-                <div class="grid-2">
-                    <div class="reveal">
-                        <h2 class="text-h2">Let's Build<br>Something Great.</h2>
-                        <p class="text-lead">Open for collaboration, freelance work, and automation consulting. Drop me a message below.</p>
-                        
-                        <div class="social-grid" style="margin-top: 3rem;">
-                            <a href="#" class="social-link hover-target">LinkedIn ↗</a>
-                            <a href="#" class="social-link hover-target">GitHub ↗</a>
-                            <a href="#" class="social-link hover-target">WhatsApp ↗</a>
-                            <a href="#" class="social-link hover-target">Email ↗</a>
-                        </div>
-                        
-                        <div style="margin-top: 3rem;">
-                            <a href="#" class="btn btn-primary hover-target" style="width: 100%; text-align: center;">Download Full CV</a>
-                        </div>
-                    </div>
-
-                    <div class="glass-panel reveal" style="transition-delay: 0.2s;">
-                        <form class="contact-form" onsubmit="event.preventDefault(); alert('Form submitted successfully!');">
-                            <div class="input-group">
-                                <input type="text" placeholder="Your Name" required class="hover-target">
-                            </div>
-                            <div class="input-group">
-                                <input type="email" placeholder="Your Email" required class="hover-target">
-                            </div>
-                            <div class="input-group">
-                                <input type="text" placeholder="Subject" required class="hover-target">
-                            </div>
-                            <div class="input-group">
-                                <textarea rows="5" placeholder="Tell me about your project..." required class="hover-target"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary hover-target" style="border: none; cursor: none;">Send Message</button>
-                        </form>
-                    </div>
+    <main id="contact" class="page-content">
+        <section>
+            <div class="contact-container">
+                <div>
+                    <h1 class="accent-text">Let's Build Something Great.</h1>
+                    <p style="margin: 2rem 0;">I am currently open to freelance opportunities and full-time positions in 2026.</p>
+                    <p><strong>Email:</strong> hello@nikithakeshan.com</p>
+                    <p><strong>Location:</strong> Colombo, Sri Lanka</p>
+                </div>
+                <div class="glass-card">
+                    <form>
+                        <input type="text" placeholder="Your Name">
+                        <input type="email" placeholder="Your Email">
+                        <textarea rows="5" placeholder="Project Details"></textarea>
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                    </form>
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Nikitha Keshan. Built with code, designed with purpose.</p>
+        <p>&copy; 2026 NIKITHA KESHAN. All Rights Reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" class="nav-links" style="display: inline; margin: 0 10px;">LinkedIn</a>
+            <a href="#" class="nav-links" style="display: inline; margin: 0 10px;">GitHub</a>
+            <a href="#" class="nav-links" style="display: inline; margin: 0 10px;">Twitter</a>
         </div>
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        // --- SPA Navigation Logic ---
+        const links = document.querySelectorAll('nav a, .hero-btns a');
+        const pages = document.querySelectorAll('.page-content');
+
+        function navigate() {
+            const hash = window.location.hash || '#home';
             
-            // 1. Loader Logic
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 800);
-            }, 1500);
-
-            // 2. Custom Cursor Logic
-            const cursor = document.getElementById('cursor');
-            const cursorBlur = document.getElementById('cursor-blur');
-            const hoverTargets = document.querySelectorAll('.hover-target, a, button, input, textarea');
-
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-                
-                // Slight delay for the blur effect
-                setTimeout(() => {
-                    cursorBlur.style.left = e.clientX + 'px';
-                    cursorBlur.style.top = e.clientY + 'px';
-                }, 50);
-            });
-
-            hoverTargets.forEach(target => {
-                target.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
-                target.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
-            });
-
-            // 3. SPA Page Routing Logic (The Multi-Page Illusion)
-            const navLinks = document.querySelectorAll('.nav-link');
-            const pages = document.querySelectorAll('.page-section');
-
-            function navigateTo(hash) {
-                if (!hash) hash = '#home';
-                
-                // Update active nav link
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === hash) {
-                        link.classList.add('active');
-                    }
-                });
-
-                // Update active page
-                pages.forEach(page => {
-                    page.classList.remove('is-active');
-                    if ('#' + page.id === hash) {
-                        page.classList.add('is-active');
-                        // Re-trigger scroll animations for new page
-                        setTimeout(checkReveal, 100);
-                    }
-                });
-                
-                window.scrollTo(0, 0); // Reset scroll position
-            }
-
-            // Listen to clicks on navigation
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const hash = e.target.getAttribute('href');
-                    history.pushState(null, null, hash);
-                    navigateTo(hash);
-                });
-            });
-
-            // Handle back/forward buttons
-            window.addEventListener('popstate', () => {
-                navigateTo(window.location.hash);
-            });
-
-            // Initialize routing based on URL hash
-            navigateTo(window.location.hash || '#home');
-
-            // 4. Scroll Reveal Animations (Intersection Observer)
-            function checkReveal() {
-                const reveals = document.querySelectorAll('.reveal');
-                const windowHeight = window.innerHeight;
-                const revealPoint = 50;
-
-                reveals.forEach(reveal => {
-                    const revealTop = reveal.getBoundingClientRect().top;
-                    // Only animate if the element is inside an active page
-                    if (revealTop < windowHeight - revealPoint && reveal.closest('.is-active')) {
-                        reveal.classList.add('active');
-                        
-                        // Counter animation trigger
-                        const counters = reveal.querySelectorAll('.counter');
-                        counters.forEach(counter => {
-                            if (!counter.classList.contains('counted')) {
-                                animateCounter(counter);
-                                counter.classList.add('counted');
-                            }
-                        });
-                    }
-                });
-            }
-            
-            window.addEventListener('scroll', checkReveal);
-            // Initial check
-            checkReveal();
-
-            // 5. Header Sticky Background on Scroll
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
+            pages.forEach(page => {
+                page.classList.remove('page-active');
+                if('#' + page.id === hash) {
+                    page.classList.add('page-active');
                 }
             });
 
-            // 6. Number Counter Animation
-            function animateCounter(element) {
-                const target = +element.getAttribute('data-target');
-                const duration = 2000; // ms
-                const increment = target / (duration / 16); // 60fps
-                
-                let current = 0;
-                const updateCounter = () => {
-                    current += increment;
-                    if (current < target) {
-                        element.innerText = Math.ceil(current) + '+';
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        element.innerText = target + '+';
-                    }
-                };
-                updateCounter();
-            }
+            // Update Nav Links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === hash) link.classList.add('active');
+            });
+
+            window.scrollTo(0, 0);
+        }
+
+        window.addEventListener('hashchange', navigate);
+        window.addEventListener('load', navigate);
+
+        // --- Custom Cursor Logic ---
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                follower.style.left = e.clientX - 16 + 'px';
+                follower.style.top = e.clientY - 16 + 'px';
+            }, 50);
+        });
+
+        // Hover Effect for Cursor
+        document.querySelectorAll('a, button, .glass-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                follower.style.transform = 'scale(1.5)';
+                follower.style.background = 'var(--amber-glow)';
+            });
+            el.addEventListener('mouseleave', () => {
+                follower.style.transform = 'scale(1)';
+                follower.style.background = 'transparent';
+            });
+        });
+
+        // --- Scroll Progress Bar ---
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress").style.width = scrolled + "%";
+        });
+
+        // --- Reveal on Scroll Animation ---
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.8s ease-out';
+            observer.observe(card);
         });
     </script>
 </body>
