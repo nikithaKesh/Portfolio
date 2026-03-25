@@ -70,7 +70,6 @@
       overflow-x: hidden;
     }
 
-    /* Soft ambient lighting */
     body::before {
       content: "";
       position: fixed;
@@ -83,7 +82,6 @@
         radial-gradient(circle at 50% 50%, rgba(117, 146, 121, 0.03), transparent 60%);
     }
 
-    /* Earthy Noise Texture */
     body::after {
       content: "";
       position: fixed;
@@ -351,7 +349,6 @@
 
     .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
 
-    /* The Organic Visual Concept */
     .hero-visual {
       position: relative; display: flex; align-items: center; justify-content: center;
       height: 100%; min-height: 600px;
@@ -389,7 +386,6 @@
       50% { transform: translate(30px, 40px); }
     }
 
-    /* "Field Notes" Panel inside Hero */
     .field-notes {
       position: relative; z-index: 2;
       background: rgba(14, 18, 15, 0.7);
@@ -416,13 +412,12 @@
 
     .icon-box {
       width: 48px; height: 48px; min-width: 48px;
-      border-radius: 50%; /* Organic circle instead of square */
+      border-radius: 50%; 
       display: grid; place-items: center;
       background: var(--surface-3); border: 1px solid var(--line);
       color: var(--primary-2); font-size: 1.4rem;
     }
 
-    /* Stack / Principle Lists */
     .stack-list, .principle-list { display: grid; gap: 16px; }
     
     .stack-item {
@@ -491,7 +486,6 @@
       display: flex; align-items: center; justify-content: center;
     }
     
-    /* Nature-vibe placeholder graphics for projects */
     .project-visual i { font-size: 4rem; color: rgba(181, 201, 186, 0.2); }
 
     .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
@@ -720,7 +714,7 @@
             
             <div class="chip-row" style="margin-top: 16px;">
               <div class="chip"><i class="ph-light ph-map-pin"></i> Colombo, Sri Lanka</div>
-              <div class="chip"><i class="ph-light ph-code"></i> Developer & Designer</div>
+              <div class="chip"><i class="ph-light ph-code"></i> Full Stack & UI/UX</div>
             </div>
           </div>
 
@@ -740,7 +734,7 @@
                   </div>
                   <div class="field-item">
                     <span class="field-key">Core Tools</span>
-                    <span class="field-value">Python, JS, CSS, SQL, Workspace</span>
+                    <span class="field-value">C#, React, Node, SQL, Python</span>
                   </div>
                   <div class="field-item">
                     <span class="field-key">Approach</span>
@@ -770,12 +764,12 @@
             <article class="card card-pad">
               <div class="icon-box" aria-hidden="true"><i class="ph-light ph-tree-structure"></i></div>
               <h3 class="title-sm" style="margin: 24px 0 12px;">Deep Roots</h3>
-              <p class="small">Clean architecture, semantic code, and structured databases that ensure long-term stability.</p>
+              <p class="small">Clean architecture, scalable APIs, and structured databases that ensure long-term stability.</p>
             </article>
             <article class="card card-pad">
               <div class="icon-box" aria-hidden="true"><i class="ph-light ph-arrows-out-line-vertical"></i></div>
               <h3 class="title-sm" style="margin: 24px 0 12px;">Scalable Logic</h3>
-              <p class="small">Automations and systems built to grow with the business, reducing manual load over time.</p>
+              <p class="small">Automations and microservices built to grow with the business, reducing manual load over time.</p>
             </article>
           </div>
         </section>
@@ -796,7 +790,7 @@
               <div class="mono" style="margin-bottom: 16px;"><i class="ph-light ph-book-open"></i> The Narrative</div>
               <h3 class="title-md" style="margin-bottom: 20px;">Merging academic theory with ground-level execution.</h3>
               <p class="small" style="margin-bottom: 16px;">I am an Information Technology undergraduate currently applying my knowledge directly to corporate environments. Serving as an IT Administrator and freelance developer allows me to test theories against real-world friction.</p>
-              <p class="small" style="margin-bottom: 16px;">I care deeply about typography, spacing, and visual calm, but I am equally passionate about database optimization and writing python scripts to eliminate hours of manual data entry.</p>
+              <p class="small" style="margin-bottom: 16px;">I care deeply about typography, spacing, and visual calm, but I am equally passionate about REST APIs, server architecture, and writing scripts to eliminate hours of manual data entry.</p>
               <p class="small">This dual perspective—caring about the surface and the structure—defines my work.</p>
             </article>
 
@@ -834,44 +828,63 @@
               <div class="section-tag mono"><i class="ph-light ph-hammer"></i> Craft</div>
               <h2 class="title-lg">Tools cultivated for impact.</h2>
             </div>
-            <p class="lead">Click on any discipline to explore how I apply it conceptually and practically.</p>
+            <p class="lead">Click on any discipline to explore how I apply it conceptually and practically across the full stack.</p>
           </div>
 
           <div class="spotlight-layout">
             <div class="skill-groups reveal">
+              
               <div class="skill-group">
                 <div class="skill-group-head">
-                  <h3 class="title-sm"><i class="ph-light ph-code-block" style="margin-right:8px; color:var(--primary)"></i> Backend & Logic</h3>
+                  <h3 class="title-sm"><i class="ph-light ph-code" style="margin-right:8px; color:var(--primary)"></i> Languages</h3>
                 </div>
                 <div class="skill-tags">
-                  <button class="skill-pill active" data-skill="python">Python</button>
+                  <button class="skill-pill active" data-skill="csharp">C#</button>
+                  <button class="skill-pill" data-skill="python">Python</button>
                   <button class="skill-pill" data-skill="java">Java</button>
-                  <button class="skill-pill" data-skill="csharp">C#</button>
-                  <button class="skill-pill" data-skill="sql">SQL / MySQL</button>
-                </div>
-              </div>
-
-              <div class="skill-group">
-                <div class="skill-group-head">
-                  <h3 class="title-sm"><i class="ph-light ph-layout" style="margin-right:8px; color:var(--primary)"></i> Interface Engineering</h3>
-                </div>
-                <div class="skill-tags">
-                  <button class="skill-pill" data-skill="html">HTML5 & Semantics</button>
-                  <button class="skill-pill" data-skill="css">CSS3 & Styling</button>
                   <button class="skill-pill" data-skill="javascript">JavaScript</button>
+                  <button class="skill-pill" data-skill="typescript">TypeScript</button>
+                  <button class="skill-pill" data-skill="c">C / C++</button>
                 </div>
               </div>
 
               <div class="skill-group">
                 <div class="skill-group-head">
-                  <h3 class="title-sm"><i class="ph-light ph-gear-fine" style="margin-right:8px; color:var(--primary)"></i> Workflow Automation</h3>
+                  <h3 class="title-sm"><i class="ph-light ph-layout" style="margin-right:8px; color:var(--primary)"></i> Frameworks & Web</h3>
                 </div>
                 <div class="skill-tags">
-                  <button class="skill-pill" data-skill="appsscript">Google Apps Script</button>
-                  <button class="skill-pill" data-skill="excel">Excel Macros</button>
-                  <button class="skill-pill" data-skill="reporting">Data Pipelines</button>
+                  <button class="skill-pill" data-skill="react">React & Next.js</button>
+                  <button class="skill-pill" data-skill="blazor">.NET Blazor</button>
+                  <button class="skill-pill" data-skill="htmlcss">HTML & CSS</button>
+                  <button class="skill-pill" data-skill="tailwind">Tailwind & UI</button>
                 </div>
               </div>
+
+              <div class="skill-group">
+                <div class="skill-group-head">
+                  <h3 class="title-sm"><i class="ph-light ph-database" style="margin-right:8px; color:var(--primary)"></i> Backend & Databases</h3>
+                </div>
+                <div class="skill-tags">
+                  <button class="skill-pill" data-skill="dotnet">.NET Core</button>
+                  <button class="skill-pill" data-skill="nodejs">Node.js</button>
+                  <button class="skill-pill" data-skill="django">Django / Python</button>
+                  <button class="skill-pill" data-skill="sql">SQL / MySQL</button>
+                  <button class="skill-pill" data-skill="nosql">PostgreSQL / Mongo</button>
+                </div>
+              </div>
+
+              <div class="skill-group">
+                <div class="skill-group-head">
+                  <h3 class="title-sm"><i class="ph-light ph-devices" style="margin-right:8px; color:var(--primary)"></i> Mobile, Design & Tools</h3>
+                </div>
+                <div class="skill-tags">
+                  <button class="skill-pill" data-skill="flutter">Flutter / Dart</button>
+                  <button class="skill-pill" data-skill="figma">Figma & UI</button>
+                  <button class="skill-pill" data-skill="adobe">Adobe Suite</button>
+                  <button class="skill-pill" data-skill="devops">Git & Docker</button>
+                </div>
+              </div>
+
             </div>
 
             <article class="skill-spotlight reveal" id="skillSpotlight" aria-live="polite">
@@ -879,13 +892,13 @@
                 <div class="skill-spotlight-head">
                   <div>
                     <div class="mono" style="margin-bottom: 8px;">Selected Discipline</div>
-                    <h3 class="title-md" id="skillTitle" style="font-family: var(--font-display); font-style:italic;">Python</h3>
+                    <h3 class="title-md" id="skillTitle" style="font-family: var(--font-display); font-style:italic;">C#</h3>
                   </div>
-                  <div class="chip" id="skillLabel">Automation & Data</div>
+                  <div class="chip" id="skillLabel">Backend & Architecture</div>
                 </div>
 
                 <div style="margin-top: 24px;">
-                  <p class="small" id="skillDescription">I use Python for scripting, problem solving, backend logic, and practical tools that reduce repetitive work.</p>
+                  <p class="small" id="skillDescription">I utilize C# to build out robust, strongly typed application logic and backend services, ensuring scale and maintainability.</p>
                   <div class="skill-meter" aria-label="Skill confidence level"><span id="skillMeter"></span></div>
                   <ul class="bullet-list" id="skillBullets"></ul>
                 </div>
@@ -950,7 +963,7 @@
               </div>
               <div class="project-tags">
                 <span class="project-tag">Python</span>
-                <span class="project-tag">Google Apps Script</span>
+                <span class="project-tag">Logic Systems</span>
               </div>
               <h3 class="title-md" style="margin-bottom: 12px;">Workflow Systems</h3>
               <p class="small">Architected internal tools including automated invoice generators and bulk email pipelines, saving hours of manual administrative work weekly.</p>
@@ -1020,7 +1033,7 @@
               <article class="timeline-card">
                 <div class="eyebrow">2024 — 2028</div>
                 <h3 class="title-sm" style="margin-bottom: 6px;">BSc in Information Technology</h3>
-                <p class="small" style="color: var(--primary-2); margin-bottom: 12px;">University / Institute</p>
+                <p class="small" style="color: var(--primary-2); margin-bottom: 12px;">University / Institute Name</p>
                 <p class="small">Rigorous study of software engineering principles, database architecture, and computer science fundamentals.</p>
               </article>
 
@@ -1155,7 +1168,6 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    // System Logic & Interactivity
     const pages = [...document.querySelectorAll('.page')];
     const routeLinks = [...document.querySelectorAll('[data-route-link]')];
     const navShell = document.getElementById('navShell');
@@ -1166,106 +1178,199 @@
 
     yearEl.textContent = new Date().getFullYear();
 
+    // ==========================================
+    // UPDATED SKILL DATA
+    // ==========================================
     const skillData = {
-      python: {
-        title: 'Python', label: 'Automation · Backend', level: 88,
-        description: 'I use Python for backend logic, utility tools, and practical workflows where manual work needs to be replaced by reliable, organic code.',
+      csharp: {
+        title: 'C# / .NET', label: 'Backend & Architecture', level: 85,
+        description: 'I utilize C# to build out robust, strongly typed application logic and backend services, ensuring scale and maintainability across the .NET ecosystem.',
         bullets: [
-          '<i class="ph-light ph-check"></i> Useful for internal tools and data handling.',
-          '<i class="ph-light ph-check"></i> Strong fit for business problem solving.',
-          '<i class="ph-light ph-check"></i> Supports the technical foundation of my profile.'
+          '<i class="ph-light ph-check"></i> System-minded programming for enterprise logic.',
+          '<i class="ph-light ph-check"></i> Deepens understanding of OOP and architecture patterns.',
+          '<i class="ph-light ph-check"></i> Broadens practical development beyond the frontend.'
         ],
-        tools: ['Automation', 'Backend Logic', 'Problem Solving']
+        tools: ['.NET Core', 'Blazor', 'MVC', 'OOP']
+      },
+      python: {
+        title: 'Python', label: 'Backend & Automation', level: 88,
+        description: 'I use Python for rapid backend logic, utility tools, data pipelines, and practical workflows where manual work needs to be replaced by reliable scripts.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Rapid development with Django and utility scripts.',
+          '<i class="ph-light ph-check"></i> Strong fit for business problem-solving and automation.',
+          '<i class="ph-light ph-check"></i> Supports the technical foundation of my machine learning knowledge.'
+        ],
+        tools: ['Django', 'MVT', 'Data Pipelines', 'AI / ML']
       },
       java: {
-        title: 'Java', label: 'OOP · Structure', level: 76,
-        description: 'Java helps me think in a structured, object-oriented way, building a solid root system for application architecture.',
+        title: 'Java', label: 'OOP Foundations', level: 75,
+        description: 'Java forms a solid root system for my application architecture, helping me think in a highly structured, object-oriented way.',
         bullets: [
-          '<i class="ph-light ph-check"></i> Ideal for enterprise-style programming.',
-          '<i class="ph-light ph-check"></i> Builds discipline around typed logic.',
-          '<i class="ph-light ph-check"></i> Deepens computer science foundations.'
+          '<i class="ph-light ph-check"></i> Ideal for learning enterprise-style programming.',
+          '<i class="ph-light ph-check"></i> Builds immense discipline around typed logic.',
+          '<i class="ph-light ph-check"></i> Deepens core computer science foundations.'
         ],
-        tools: ['OOP', 'Architecture', 'Structure']
-      },
-      csharp: {
-        title: 'C#', label: 'Application Logic', level: 70,
-        description: 'I utilize C# to branch out my programming foundation, especially where strong typing and structured logic matter.',
-        bullets: [
-          '<i class="ph-light ph-check"></i> System-minded programming.',
-          '<i class="ph-light ph-check"></i> Strengthens architecture patterns.',
-          '<i class="ph-light ph-check"></i> Broadens practical development.'
-        ],
-        tools: ['Typed Logic', 'Applications']
-      },
-      sql: {
-        title: 'SQL / MySQL', label: 'Data Management', level: 82,
-        description: 'The soil of any good application. I use SQL for structured data storage, querying, and backend logic.',
-        bullets: [
-          '<i class="ph-light ph-check"></i> Supports dashboards and reporting.',
-          '<i class="ph-light ph-check"></i> Essential for clean storage retrieval.',
-          '<i class="ph-light ph-check"></i> Critical for organized business data.'
-        ],
-        tools: ['Queries', 'Schemas', 'Storage']
-      },
-      html: {
-        title: 'HTML5', label: 'Semantics', level: 92,
-        description: 'HTML is the structural bedrock of my frontend work, ensuring clean, accessible, and semantic page architecture.',
-        bullets: [
-          '<i class="ph-light ph-check"></i> Clean content structure.',
-          '<i class="ph-light ph-check"></i> SEO and Accessibility focus.',
-          '<i class="ph-light ph-check"></i> The backbone of polished UI.'
-        ],
-        tools: ['Semantics', 'Accessibility']
-      },
-      css: {
-        title: 'CSS3', label: 'Visual Ecosystems', level: 90,
-        description: 'CSS allows me to shape the atmosphere of a product—using organic spacing, smooth motion, and natural responsiveness.',
-        bullets: [
-          '<i class="ph-light ph-check"></i> Modern frosted glass and subtle shadows.',
-          '<i class="ph-light ph-check"></i> Framework-independent responsive design.',
-          '<i class="ph-light ph-check"></i> Drives this exact portfolio\'s aesthetic.'
-        ],
-        tools: ['Layout', 'Animation', 'Design Systems']
+        tools: ['Java', 'Enterprise Structure', 'OOP']
       },
       javascript: {
-        title: 'JavaScript', label: 'Interaction Logic', level: 86,
-        description: 'JavaScript breathes life into static pages, handling routing, dynamic UI state, and natural interactions.',
+        title: 'JavaScript', label: 'Interaction Logic', level: 88,
+        description: 'JavaScript breathes life into static interfaces, handling routing, dynamic UI state, and seamless, fluid user interactions.',
         bullets: [
-          '<i class="ph-light ph-check"></i> Makes pages feel like real products.',
-          '<i class="ph-light ph-check"></i> Client-side logic execution.',
-          '<i class="ph-light ph-check"></i> Essential for rich frontend experiences.'
+          '<i class="ph-light ph-check"></i> Makes pages feel like real, tactile products.',
+          '<i class="ph-light ph-check"></i> Client-side logic execution and DOM manipulation.',
+          '<i class="ph-light ph-check"></i> Essential for rich, modern frontend experiences.'
         ],
-        tools: ['DOM', 'State Management', 'Interactions']
+        tools: ['DOM', 'ES6+', 'Async Logic', 'State Management']
       },
-      appsscript: {
-        title: 'Apps Script', label: 'Workspace Automation', level: 90,
-        description: 'A highly practical tool. I use it to automate spreadsheets, emails, and repetitive administrative ecosystems.',
+      typescript: {
+        title: 'TypeScript', label: 'Typed Frontend', level: 82,
+        description: 'TypeScript adds safety and strict structural integrity to JavaScript, ensuring scalable and highly maintainable application architectures.',
         bullets: [
-          '<i class="ph-light ph-check"></i> Turns Workspace into an operations engine.',
-          '<i class="ph-light ph-check"></i> Invoicing and reporting automation.',
-          '<i class="ph-light ph-check"></i> Clear proof of business-automation value.'
+          '<i class="ph-light ph-check"></i> Prevents logic errors before code even runs.',
+          '<i class="ph-light ph-check"></i> Makes scaling large codebases manageable.',
+          '<i class="ph-light ph-check"></i> Perfect companion for modern React & Next.js ecosystems.'
         ],
-        tools: ['Google Workspace', 'Integrations']
+        tools: ['Types', 'Interfaces', 'Scalability']
       },
-      excel: {
-        title: 'Excel Macros', label: 'Office Logic', level: 74,
-        description: 'Bridges operations and automation for teams still deeply rooted in spreadsheet workflows.',
+      c: {
+        title: 'C / C++', label: 'Core Foundations', level: 65,
+        description: 'Working with C deepens my understanding of memory management, performance optimization, and lower-level system mechanics.',
         bullets: [
-          '<i class="ph-light ph-check"></i> Reduces manual admin friction.',
-          '<i class="ph-light ph-check"></i> Quick efficiency gains for offices.',
-          '<i class="ph-light ph-check"></i> Adds operational credibility.'
+          '<i class="ph-light ph-check"></i> Sharpens logic and core programming fundamentals.',
+          '<i class="ph-light ph-check"></i> Useful for academic and foundational software learning.',
+          '<i class="ph-light ph-check"></i> Strengthens technical depth beyond the web layer.'
         ],
-        tools: ['VBA', 'Workflows']
+        tools: ['Memory', 'Logic', 'Performance']
       },
-      reporting: {
-        title: 'Data Pipelines', label: 'Visibility', level: 84,
-        description: 'I build solutions to clarify raw data, making information easy to track, harvest, and act upon.',
+      react: {
+        title: 'React & Next.js', label: 'Dynamic Interfaces', level: 85,
+        description: 'I build component-driven, highly interactive web applications using React and Next.js, focusing on state management and performance.',
         bullets: [
-          '<i class="ph-light ph-check"></i> Cleans up messy raw data.',
-          '<i class="ph-light ph-check"></i> Repeatable tracking and exports.',
-          '<i class="ph-light ph-check"></i> Highly operationally useful.'
+          '<i class="ph-light ph-check"></i> Creating modular, reusable UI components.',
+          '<i class="ph-light ph-check"></i> Managing complex application state efficiently.',
+          '<i class="ph-light ph-check"></i> Leveraging Next.js for SSR and optimal performance.'
         ],
-        tools: ['Dashboards', 'Summaries']
+        tools: ['React.js', 'Next.js', 'Redux', 'Components']
+      },
+      blazor: {
+        title: 'Blazor & XAML', label: '.NET UI', level: 80,
+        description: 'I leverage the C# ecosystem to build seamless, unified web and application interfaces using Blazor and XAML.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Building rich interactive UIs using C# instead of JS.',
+          '<i class="ph-light ph-check"></i> Deep integration with existing .NET backend services.',
+          '<i class="ph-light ph-check"></i> Cross-platform interface design.'
+        ],
+        tools: ['Blazor', 'XAML', 'MAUI', '.NET UI']
+      },
+      htmlcss: {
+        title: 'HTML5 & CSS3', label: 'Visual Architecture', level: 92,
+        description: 'The absolute bedrock of my work. I write semantic HTML for accessibility, and modern CSS to shape the exact visual atmosphere of a product.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Clean, accessible, and scalable content structure.',
+          '<i class="ph-light ph-check"></i> Modern frosted glass, organic spacing, and transitions.',
+          '<i class="ph-light ph-check"></i> Framework-independent responsive design.'
+        ],
+        tools: ['Semantics', 'CSS Grid', 'Flexbox', 'Animations']
+      },
+      tailwind: {
+        title: 'Tailwind CSS & UI', label: 'Rapid Styling', level: 90,
+        description: 'I use utility-first CSS frameworks like Tailwind alongside Material UI to rapidly prototype and consistently scale visual design systems.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Accelerates development without losing design fidelity.',
+          '<i class="ph-light ph-check"></i> Ensures absolute consistency across large component libraries.',
+          '<i class="ph-light ph-check"></i> Easy maintenance and responsive scaling.'
+        ],
+        tools: ['Tailwind CSS', 'Material UI', 'Design Systems']
+      },
+      dotnet: {
+        title: '.NET Core & Node', label: 'Backend Systems', level: 82,
+        description: 'Crafting robust, scalable enterprise backends, microservices, and fast event-driven APIs.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Building secure, high-performance REST APIs.',
+          '<i class="ph-light ph-check"></i> Implementing microservices architecture.',
+          '<i class="ph-light ph-check"></i> Handling complex business logic securely on the server.'
+        ],
+        tools: ['.NET Core', 'Node.js', 'Microservices', 'REST APIs']
+      },
+      nodejs: {
+        title: 'Node.js', label: 'Async Backend', level: 82,
+        description: 'Crafting fast, event-driven APIs and scalable server-side applications utilizing the JavaScript ecosystem.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Perfect for real-time applications and scalable network programs.',
+          '<i class="ph-light ph-check"></i> Unifies the codebase by using JS on both client and server.',
+          '<i class="ph-light ph-check"></i> Extensive integration with modern cloud platforms.'
+        ],
+        tools: ['Node.js', 'Express', 'Async Logic', 'APIs']
+      },
+      django: {
+        title: 'Django / PHP', label: 'Rapid Backend', level: 75,
+        description: 'Utilizing robust frameworks like Django alongside legacy PHP to build secure, data-driven web applications quickly.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> High-level Python frameworks that encourage clean design.',
+          '<i class="ph-light ph-check"></i> Excellent for rapid prototyping and moving ideas to production.',
+          '<i class="ph-light ph-check"></i> Built-in security and administration panels.'
+        ],
+        tools: ['Django', 'PHP', 'MVT Architecture']
+      },
+      sql: {
+        title: 'SQL / MySQL', label: 'Relational Data', level: 84,
+        description: 'The soil of any good application. I use SQL Server and MySQL for structured data storage, querying, and relational integrity.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Designing efficient relational database schemas.',
+          '<i class="ph-light ph-check"></i> Writing complex queries for reporting and dashboards.',
+          '<i class="ph-light ph-check"></i> Critical for organized, transactional business data.'
+        ],
+        tools: ['SQL Server', 'MySQL', 'Relational DBs']
+      },
+      nosql: {
+        title: 'PostgreSQL / Mongo', label: 'Advanced Data', level: 80,
+        description: 'Handling advanced relational integrity with PostgreSQL, and unstructured flexibility with NoSQL databases like MongoDB and Firebase.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Adapting database choices to the specific needs of the product.',
+          '<i class="ph-light ph-check"></i> Handling highly scalable, document-oriented data.',
+          '<i class="ph-light ph-check"></i> Real-time data syncing capabilities.'
+        ],
+        tools: ['PostgreSQL', 'MongoDB', 'Firebase']
+      },
+      flutter: {
+        title: 'Flutter / Dart', label: 'Mobile Development', level: 78,
+        description: 'Creating fluid, natively compiled mobile applications for both iOS and Android from a single, highly maintainable codebase.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Rapid cross-platform development.',
+          '<i class="ph-light ph-check"></i> Building beautiful, customized mobile UI components.',
+          '<i class="ph-light ph-check"></i> Connects seamlessly to REST APIs and Firebase.'
+        ],
+        tools: ['Flutter', 'Dart', 'Android', 'MAUI']
+      },
+      figma: {
+        title: 'Figma & UI', label: 'Prototyping', level: 85,
+        description: 'Translating user needs and business goals into high-fidelity wireframes, visual systems, and interactive prototypes.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Designing exact component libraries before writing code.',
+          '<i class="ph-light ph-check"></i> Ensuring visual harmony, typography, and spacing.',
+          '<i class="ph-light ph-check"></i> Seamless collaboration with clients during the design phase.'
+        ],
+        tools: ['Figma', 'Adobe XD', 'Prototyping', 'Wireframing']
+      },
+      adobe: {
+        title: 'Adobe Creative Suite', label: 'Visual Assets', level: 80,
+        description: 'Utilizing professional design software to generate pixel-perfect assets, edit multimedia, and polish brand identities.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Photo manipulation and asset creation.',
+          '<i class="ph-light ph-check"></i> Vector graphic illustration.',
+          '<i class="ph-light ph-check"></i> Video editing and motion graphics integration.'
+        ],
+        tools: ['Photoshop', 'Illustrator', 'Premiere Pro', 'After Effects']
+      },
+      devops: {
+        title: 'Git & Docker', label: 'Operations', level: 80,
+        description: 'Maintaining version control integrity, agile project momentum, and containerizing applications for seamless deployment.',
+        bullets: [
+          '<i class="ph-light ph-check"></i> Ensuring consistent environments from dev to production.',
+          '<i class="ph-light ph-check"></i> Managing codebases via GitHub and GitLab.',
+          '<i class="ph-light ph-check"></i> Facilitating Scrum and Agile workflows via Jira and Slack.'
+        ],
+        tools: ['Docker', 'Git', 'Agile / Scrum', 'Postman']
       }
     };
 
@@ -1386,7 +1491,7 @@
       setTimeout(() => document.getElementById('skillMeter').style.width = `${data.level}%`, 50);
     }
     skillPills.forEach(p => p.addEventListener('click', () => renderSkill(p.dataset.skill)));
-    renderSkill('python');
+    renderSkill('csharp'); // Default to C# now to highlight backend depth
 
     // Projects Filter
     const filters = [...document.querySelectorAll('#projectFilters [data-filter]')];
