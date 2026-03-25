@@ -147,7 +147,7 @@
 
     .lead { font-size: clamp(1.05rem, 1.4vw, 1.15rem); line-height: 1.8; color: var(--muted); max-width: 68ch; font-weight: 300; }
     .muted { color: var(--muted); }
-    .small { font-size: 0.95rem; line-height: 1.7; color: var(--muted); font-weight: 300; }
+    .small { font-size: 0.95rem; line-height: 1.6; color: var(--muted); font-weight: 300; }
 
     /* =========================================
        LAYOUT GRIDS & SURFACES
@@ -244,9 +244,16 @@
       border: 1px solid var(--line); border-radius: var(--radius-sm);
       background: var(--surface-3); color: var(--muted);
       font-size: 0.9rem; font-weight: 400;
+      transition: var(--transition);
+    }
+    
+    a.chip:hover {
+      background: rgba(117, 146, 121, 0.1);
+      border-color: var(--primary-2);
+      color: var(--text);
     }
 
-    .chip i { color: var(--primary-2); font-size: 1.1rem; }
+    .chip i { color: var(--primary-2); font-size: 1.1rem; transition: color var(--transition);}
 
     /* =========================================
        NAVIGATION
@@ -273,16 +280,16 @@
     .brand { display: flex; align-items: center; gap: 16px; min-width: 0; }
 
     .brand-mark {
-      width: 44px; height: 44px; display: grid; place-items: center;
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
       border-radius: var(--radius-sm);
       background: var(--surface-3); border: 1px solid var(--line);
       font-family: var(--font-display); font-weight: 600; font-style: italic; font-size: 1.1rem;
       color: var(--accent);
     }
 
-    .brand-meta { display: grid; gap: 2px; }
-    .brand-title { font-weight: 500; font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 0.02em; }
-    .brand-sub { color: var(--muted-2); font-size: 0.82rem; font-weight: 300; }
+    .brand-meta { display: flex; flex-direction: column; gap: 2px; justify-content: center;}
+    .brand-title { font-weight: 500; font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 0.02em; line-height: 1;}
+    .brand-sub { color: var(--muted-2); font-size: 0.82rem; font-weight: 300; line-height: 1;}
 
     .nav-links { display: flex; align-items: center; gap: 6px; }
 
@@ -361,7 +368,7 @@
       border: 1px solid var(--line);
       box-shadow: inset 0 0 80px rgba(255,255,255,0.02), var(--shadow-soft);
       backdrop-filter: blur(30px);
-      display: flex; flex-direction: column; justify-content: center; padding: 40px;
+      display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px;
       animation: morph 15s ease-in-out infinite alternate;
       overflow: hidden;
     }
@@ -387,7 +394,7 @@
     }
 
     .field-notes {
-      position: relative; z-index: 2;
+      position: relative; z-index: 2; width: 100%;
       background: rgba(14, 18, 15, 0.7);
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
@@ -450,13 +457,19 @@
       color: var(--bg); background: var(--primary-2); border-color: var(--primary-2); transform: translateY(-2px);
     }
 
-    .skill-spotlight-wrapper { position: sticky; top: 120px; height: max-content; }
+    /* Scrollable Sticky Wrapper for smaller laptops */
+    .skill-spotlight-wrapper { 
+      position: sticky; top: 120px; height: max-content; z-index: 10;
+    }
 
     .skill-spotlight {
       display: flex; flex-direction: column; justify-content: space-between; gap: 24px;
       padding: 36px; border-radius: var(--radius-md); border: 1px solid var(--line);
       background: linear-gradient(180deg, var(--surface), rgba(14, 18, 15, 0.4));
+      max-height: calc(100vh - 140px); overflow-y: auto; scrollbar-width: none;
     }
+    .skill-spotlight::-webkit-scrollbar { display: none; }
+    
     .skill-spotlight-head { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 20px;}
     
     .skill-meter { width: 100%; height: 4px; border-radius: 2px; background: var(--line-strong); overflow: hidden; margin-top: 24px; }
@@ -489,7 +502,8 @@
       display: flex; align-items: center; justify-content: center;
     }
     
-    .project-visual i { font-size: 4rem; color: rgba(181, 201, 186, 0.2); }
+    .project-visual i { font-size: 4rem; color: rgba(181, 201, 186, 0.2); transition: var(--transition); }
+    .project-card:hover .project-visual i { transform: scale(1.1); color: rgba(181, 201, 186, 0.4); }
 
     .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
     .project-tag {
@@ -497,7 +511,7 @@
       background: var(--surface-3); color: var(--muted); font-size: 0.8rem;
     }
 
-    .project-links { margin-top: auto; padding-top: 24px; display: flex; gap: 16px;} 
+    .project-links { margin-top: auto; padding-top: 24px; display: flex; gap: 16px; flex-wrap: wrap;} 
     .text-link {
       display: inline-flex; align-items: center; gap: 8px; color: var(--primary-2);
       font-weight: 500; transition: gap var(--transition), color var(--transition); border-bottom: 1px solid transparent; padding-bottom: 2px;
@@ -505,17 +519,18 @@
     .text-link:hover { gap: 12px; color: var(--text); border-color: var(--text); }
 
     /* =========================================
-       EXPERIENCE TIMELINE 
+       EXPERIENCE TIMELINE (Perfected Math)
        ========================================= */
     .timeline-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
     
     .timeline-column { 
       display: flex; flex-direction: column; gap: 32px; 
-      position: relative; padding-left: 28px;
+      position: relative; padding-left: 32px; /* Set exact padding */
     }
 
+    /* The continuous line down the column */
     .timeline-column::before {
-      content: ""; position: absolute; left: 0; top: 12px; bottom: 0; width: 1px;
+      content: ""; position: absolute; left: 4px; top: 12px; bottom: 0; width: 2px; /* Line width 2px, center at 5px */
       background: var(--line-strong);
     }
 
@@ -524,8 +539,9 @@
       border-radius: var(--radius-md); border: 1px solid var(--line); background: var(--surface);
     }
     
+    /* The dot perfectly aligned with the line */
     .timeline-card::before {
-      content: ""; position: absolute; left: -32.5px; top: 32px; width: 10px; height: 10px;
+      content: ""; position: absolute; left: -32px; top: 32px; width: 10px; height: 10px; /* Dot width 10px, center at 5px */
       border-radius: 50%; background: var(--primary); border: 2px solid var(--bg);
       z-index: 2;
     }
@@ -645,7 +661,8 @@
       .section-head, .footer-bar { flex-direction: column; align-items: flex-start; }
       .title-xl { font-size: clamp(2.8rem, 10vw, 4rem); }
       .timeline-column { padding-left: 20px; }
-      .timeline-card::before { left: -24.5px; }
+      .timeline-column::before { left: 4px; }
+      .timeline-card::before { left: -21px; } /* Adjust dot for mobile padding */
     }
     @media (max-width: 640px) {
       .container { width: calc(100% - 32px); }
@@ -999,7 +1016,7 @@
                 <span class="project-tag">Responsive Design</span>
               </div>
               <h3 class="title-md" style="margin-bottom: 12px;">OLA Tangalle Hotel</h3>
-              <p class="small">Collaborated closely to engineer a premium frontend experience for a boutique hotel, highlighting imagery and booking flow.</p>
+              <p class="small">Collaborated closely to engineer a premium frontend experience for a boutique hotel, highlighting imagery and booking flows.</p>
               <div class="project-links">
                 <a href="https://olatangalle.com/" target="_blank" class="text-link">Live Site <i class="ph-light ph-arrow-up-right"></i></a>
                 <button class="text-link" data-open-project="ola">Details</button>
